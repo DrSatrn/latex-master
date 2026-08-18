@@ -1,0 +1,15 @@
+{% assign visible_items = include.section.items | where_exp: "item", "item.enabled != false" %}
+{% if include.section.enabled != false and visible_items.size > 0 %}
+  <section class="resume-section" aria-labelledby="additional-{{ include.index }}-heading">
+    <h2 id="additional-{{ include.index }}-heading">{{ include.section.heading }}</h2>
+    <div class="entries">
+      {% for item in visible_items %}
+          <article class="entry">
+            {% if item.name %}<h3>{{ item.name }}</h3>{% endif %}
+            {% if item.text %}<p>{{ item.text }}</p>{% endif %}
+            {% if item.details %}<ul class="details">{% for detail in item.details %}{% if detail %}<li>{{ detail }}</li>{% endif %}{% endfor %}</ul>{% endif %}
+          </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

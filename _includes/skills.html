@@ -1,0 +1,15 @@
+{% assign visible_groups = include.section.groups | where_exp: "group", "group.enabled != false" %}
+{% assign visible_groups = visible_groups | where_exp: "group", "group.items.size > 0" %}
+{% if include.section.enabled != false and visible_groups.size > 0 %}
+  <section class="resume-section" aria-labelledby="skills-heading">
+    <h2 id="skills-heading">{{ include.section.heading }}</h2>
+    <div class="skill-groups">
+      {% for group in visible_groups %}
+        <div class="skill-group">
+          <h3>{{ group.name }}</h3>
+          <p>{{ group.items | join: ' · ' }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

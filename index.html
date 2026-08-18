@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign resume = site.data.resume %}
+<main class="page">
+  <header class="resume-header">
+    <div class="identity">
+      <h1>{{ resume.person.name | default: site.title }}</h1>
+      {% if resume.person.title %}<p class="professional-title">{{ resume.person.title }}</p>{% endif %}
+    </div>
+    <a class="pdf-link" href="{{ '/assets/resume.pdf' | relative_url }}">Download PDF</a>
+    {% include contact.html contact=resume.contact %}
+  </header>
+
+  {% if resume.summary.enabled != false and resume.summary.text %}
+    <section class="resume-section summary" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">{{ resume.summary.heading }}</h2>
+      <p>{{ resume.summary.text }}</p>
+    </section>
+  {% endif %}
+
+  {% include skills.html section=resume.skills %}
+  {% include entry-list.html section=resume.experience id="experience" %}
+  {% include entry-list.html section=resume.projects id="projects" %}
+  {% include entry-list.html section=resume.certifications id="certifications" %}
+  {% include entry-list.html section=resume.qualifications id="qualifications" %}
+  {% include entry-list.html section=resume.education id="education" %}
+
+  {% for section in resume.additional_sections %}
+    {% include additional-section.html section=section index=forloop.index %}
+  {% endfor %}
+</main>

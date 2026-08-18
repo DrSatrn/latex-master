@@ -1,0 +1,13 @@
+_site/
+.DS_Store
+tmp/
+.bundle/
+vendor/
+resume.tex
+resume.pdf
+assets/resume.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out

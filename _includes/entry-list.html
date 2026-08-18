@@ -1,0 +1,38 @@
+{% assign visible_items = include.section.items | where_exp: "item", "item.enabled != false" %}
+{% if include.section.enabled != false and visible_items.size > 0 %}
+  <section class="resume-section" aria-labelledby="{{ include.id }}-heading">
+    <h2 id="{{ include.id }}-heading">{{ include.section.heading }}</h2>
+    <div class="entries">
+      {% for item in visible_items %}
+        <article class="entry">
+          <header class="entry-header">
+            <div>
+              {% if item.role %}<h3>{{ item.role }}</h3>{% elsif item.name %}<h3>{{ item.name }}</h3>{% elsif item.qualification %}<h3>{{ item.qualification }}</h3>{% endif %}
+              {% if item.employer or item.institution or item.issuer %}
+                <p class="entry-source">{{ item.employer | default: item.institution | default: item.issuer }}</p>
+              {% endif %}
+            </div>
+            {% if item.start or item.end or item.date or item.location %}
+              <p class="entry-meta">
+                {% if item.start or item.end %}<span>{{ item.start }}{% if item.start and item.end %} – {% endif %}{{ item.end }}</span>{% elsif item.date %}<span>{{ item.date }}</span>{% endif %}
+                {% if item.location %}<span>{{ item.location }}</span>{% endif %}
+              </p>
+            {% endif %}
+          </header>
+          {% if item.summary %}<p>{{ item.summary }}</p>{% endif %}
+          {% if item.achievements %}
+            <ul class="details">
+              {% for detail in item.achievements %}{% if detail %}<li>{{ detail }}</li>{% endif %}{% endfor %}
+            </ul>
+          {% endif %}
+          {% if item.details %}
+            <ul class="details">
+              {% for detail in item.details %}{% if detail %}<li>{{ detail }}</li>{% endif %}{% endfor %}
+            </ul>
+          {% endif %}
+          {% if item.technologies %}<p class="technologies"><strong>Technologies:</strong> {{ item.technologies | join: ', ' }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

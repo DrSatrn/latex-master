@@ -1,0 +1,22 @@
+title: Resume
+url: "https://drsatrn.github.io"
+baseurl: "/latex-master"
+markdown: kramdown
+theme: null
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - requirements.txt
+  - scripts
+  - templates
+  - reference
+  - eg resume.pdf
+  - example latex.tex
+  - tmp
+  - resume.tex
+  - resume.pdf
+  - resume.aux
+  - resume.log
+  - resume.out
+  - vendor

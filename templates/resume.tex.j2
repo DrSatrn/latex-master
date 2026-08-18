@@ -1,0 +1,54 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{XCharter}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{iftex}
+\raggedright
+\pagestyle{empty}
+\ifPDFTeX
+\input{glyphtounicode}
+\pdfgentounicode=1
+\fi
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt,leftmargin=12pt,topsep=7pt}
+\newcommand{\entry}[4]{\textbf{#1,} #2 -- #4 \hfill #3\\[-9pt]}
+\begin{document}
+\begin{center}
+{\Huge {{ resume.person.name | tex }}}{% if resume.person.title %}\\[2pt]{{ resume.person.title | tex }}{% endif %}
+
+{% set contacts = resume.contact.get('items', []) | visible %}{% if resume.contact.get('enabled', true) and contacts %}
+{% for item in contacts if item.get('value') %}{% if item.get('url') %}\href{ {{- item.url | tex_url -}} }{ {{- item.value | tex -}} }{% else %}{{ item.value | tex }}{% endif %}{% if not loop.last %}\enspace{}\textbar\enspace{}{% endif %}{% endfor %}
+{% endif %}
+\end{center}
+\vspace{-10pt}
+
+{% if resume.summary.get('enabled', true) and resume.summary.get('text') %}\section*{ {{- resume.summary.heading | tex -}} }
+{{ resume.summary.text | tex }}
+{% endif %}
+
+{% set skill_groups = resume.skills.get('groups', []) | visible %}{% if resume.skills.get('enabled', true) and skill_groups %}\section*{ {{- resume.skills.heading | tex -}} }
+{% for group in skill_groups if group.get('items') %}\textbf{ {{- group.name | tex -}} } {{ group['items'] | join(', ') | tex }}\\
+{% endfor %}\vspace{-6.5pt}
+{% endif %}
+
+{% for key in ['experience', 'projects', 'certifications', 'qualifications', 'education'] %}{% set section = resume[key] %}{% set visible_items = section.get('items', []) | visible %}{% if section.get('enabled', true) and visible_items %}\section*{ {{- section.heading | tex -}} }
+{% for item in visible_items %}\entry{ {{- (item.get('role') or item.get('name') or item.get('qualification') or '') | tex -}} }{ {{- (item.get('employer') or item.get('institution') or item.get('issuer') or '') | tex -}} }{ {{- ((item.get('start', '') ~ (' -- ' if item.get('start') and item.get('end') else '') ~ item.get('end', '')) or item.get('date', '')) | tex -}} }{ {{- item.get('location', '') | tex -}} }
+{% if item.get('summary') %}{{ item.summary | tex }}
+{% endif %}{% set details = item.get('achievements') or item.get('details') %}{% if details %}\begin{itemize}
+{% for detail in details if detail %}\item {{ detail | tex }}
+{% endfor %}\end{itemize}
+{% endif %}{% if item.get('technologies') %}\textbf{Technologies:} {{ item.technologies | join(', ') | tex }}
+{% endif %}{% endfor %}{% endif %}{% endfor %}
+
+{% for section in resume.get('additional_sections', []) | visible %}{% set visible_items = section.get('items', []) | visible %}{% if visible_items %}\section*{ {{- section.heading | tex -}} }
+{% for item in visible_items %}{% if item.get('name') %}\textbf{ {{- item.name | tex -}} }{% endif %}{% if item.get('text') %}{{ item.text | tex }}{% endif %}
+{% if item.get('details') %}\begin{itemize}
+{% for detail in item.details if detail %}\item {{ detail | tex }}
+{% endfor %}\end{itemize}{% endif %}
+{% endfor %}{% endif %}{% endfor %}
+\end{document}

@@ -1,0 +1,116 @@
+person:
+  name: Sebastian Treanor
+  title: ""
+
+contact:
+  enabled: true
+  items:
+    - enabled: true
+      type: email
+      value: treanorsebastian@gmail.com
+      url: mailto:treanorsebastian@gmail.com
+    - enabled: true
+      type: linkedin
+      value: linkedin/in/sebastian-treanor.com
+    - enabled: true
+      type: github
+      value: github.com/DrSatrn
+      url: https://github.com/DrSatrn
+      external: true
+
+summary:
+  enabled: false
+  heading: Professional Summary
+  text: ""
+
+experience:
+  enabled: true
+  heading: Experience
+  items:
+    - enabled: true
+      employer: Sci-Fleet Motors
+      role: Platform Engineer, Data
+      location: Brisbane, QLD
+      start: Mar 2026
+      end: Present
+      achievements:
+        - Automated monthly report build and distribution via Oracle REST API + PowerShell for sharepoint upload to reduce manual toil by 40 hours per week.
+        - Deployed version control for data teams transformations and ETL pipelines using git
+        - Created platform documentation for the data environment with MKDocs + Material, hosted internally via IIS reverse proxy. Automatic deployment with unattended scheduled powershell to check git worktree and pull sparse changes + rebuild document website.
+        - Built a custom vehicale sales map density report with Python, HTML and JavaScript + leaflet map library -- deployed and rebuilt monthly via scheduled PowerShell jobs
+    - enabled: true
+      employer: Federal Court of Australia
+      role: Senior Systems Engineer (Identity + Automation)
+      location: Brisbane, QLD
+      start: Mar 2023
+      end: Mar 2026
+      achievements:
+        - Built an automated PowerShell pipeline to query our ITSM API for SLA metrics. Metrics fed to LLM Model in Azure Foundry via the Foundry https endpoint. Response saved to email body and distributed to management.
+        - Built a scheduled PowerShell job to query and update 2500+ active directory account attributes. Logged missing or incorrect fields and generated a review list for management. Included pre change snapshot for easy rollback if required
+        - Refactored 100+ internal user life cycle automation scripts to replace deprecated AzureAD module with MS Graph API SDK; reviewed, tested, and implemented logic changes to ensure continuity ahead of EOL and avoid service disruption
+        - Migrated Identity lifecycle environment from on-prem to Azure. Rewrote onboarding, elevated account requests and termination handling in Azure Runbooks -- logging and reporting setup in Azure Monitor + Log Analytics.
+        - Built an automated PowerShell pipeline to save new HR employee data from SFTP endpoint and upload to sharepoint via Graph + Registered Entra App for automatic BI dashboard rebuilds.
+    - enabled: true
+      employer: Accentis
+      role: Integration Engineer
+      location: Brisbane, QLD
+      start: Mar 2022
+      end: Mar 2023
+      achievements:
+        - Led a database consolidation project merging two sister companies’ systems; delivered 2 months ahead of schedule, saving extensive prep and QA time. Recognized with maximum annual bonus (15%) for impact
+        - Built a local Python tool using SQLAlchemy and the Shopify API to automate pricing updates and website synchronization, saving 20+ hours/week. Integrated SQL-based change analysis to flag margin violations and zero-price errors, reducing pricing mistakes and improving revenue accuracy
+        - Developed 300+ T-SQL stored procedures in SSMS to transform, validate, and route ERP form data across relational tables, triggering downstream processes and ensuring data integrity across modules
+        - Created 100+ custom T-SQL reports to enhance client visibility into order history, item usage, and invoice tracking, improving reporting accuracy and reducing support requests
+    - enabled: true
+      employer: KS Easter Transport
+      role: Technical Support Engineer, ERP SME
+      location: Brisbane, QLD
+      start: Nov 2021
+      end: Mar 2022
+      achievements:
+        - Performed root cause analysis on fleet incidents using GPS telemetry, video footage, and operational data, producing biweekly reports for management to inform safety initiatives and operational decisions
+        - Developed a VBA automation tool that cleaned, filtered, and categorized incident data, reducing preparation time from 60 to 10 minutes per case and enabling faster report turnaround
+        - Trained 9 staff during a 4-week ERP roll-out, ensuring smooth adoption and minimizing workflow disruptions during the Excel-to-ERP transition
+
+projects:
+  enabled: false
+  heading: Projects
+  items: []
+
+skills:
+  enabled: true
+  heading: Skills
+  groups:
+    - enabled: true
+      name: Languages
+      items:
+        - PowerShell (Graph API)
+        - Python
+        - SQL (Oracle, TSQL)
+    - enabled: true
+      name: "On Prem:"
+      items:
+        - Active Directory
+        - Endpoint software deployment with Ivanti Neurons workers
+    - enabled: true
+      name: "Cloud:"
+      items:
+        - Azure (Automation, Monitor, Key Vault, Entra, DevOps, Functions)
+        - Ivanti (Neurons, ITSM)
+
+certifications:
+  enabled: false
+  heading: Certifications
+  items: []
+
+qualifications:
+  enabled: false
+  heading: Qualifications
+  items: []
+
+education:
+  enabled: false
+  heading: Higher Education
+  items: []
+
+additional_sections: []
