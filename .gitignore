@@ -1,8 +1,11 @@
 _site/
+.jekyll-cache/
 .DS_Store
 tmp/
 .bundle/
 vendor/
+__pycache__/
+*.py[cod]
 resume.tex
 resume.pdf
 assets/resume.pdf
@@ -11,3 +14,4 @@ assets/resume.pdf
 *.fls
 *.log
 *.out
+*.synctex.gz
