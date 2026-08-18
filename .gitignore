@@ -4,6 +4,7 @@ _site/
 tmp/
 .bundle/
 vendor/
+Gemfile.lock
 __pycache__/
 *.py[cod]
 resume.tex

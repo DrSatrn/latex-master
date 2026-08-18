@@ -2,7 +2,7 @@
 
 Edit `_data/resume.yml` to maintain the website and generated PDF from one source.
 
-Run the website locally with:
+Run the website locally with Ruby 3.0 or newer:
 
 ```sh
 bundle install
